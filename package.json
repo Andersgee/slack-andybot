@@ -1,11 +1,18 @@
 {
   "name": "slack-andybot",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "my first slack bot",
+  "engines": {
+    "node": "14.x"
+  },
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "andersgee@gmail.com",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
