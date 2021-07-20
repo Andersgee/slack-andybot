@@ -1,0 +1,11 @@
+{
+  "name": "slack-andybot",
+  "version": "1.0.0",
+  "description": "my first slack bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "andersgee@gmail.com",
+  "license": "ISC"
+}
