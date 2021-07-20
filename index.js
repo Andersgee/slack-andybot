@@ -45,9 +45,15 @@ app.post("/slack-andybot-event", (req, res) => {
 
   if (payload.event.type === "app_mention") {
     //const text = payload.event.text;
-    postMessage("basic response to app_mention");
+    postMessage(
+      "Im alive. Inspect my mind here: https://github.com/Andersgee/slack-andybot"
+    );
     //make a post request to slack here with what
     //see: https://api.slack.com/methods/chat.postMessage
+    //also: https://api.slack.com/apis/connections/events-api#event_type_structure
+
+    //Actually, here is the json schema for all events:
+    //https://api.slack.com/types/event
   }
 });
 
