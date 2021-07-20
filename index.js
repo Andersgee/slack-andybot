@@ -18,12 +18,15 @@ app.get("/otherstuff", (req, res) => {
 
 app.use(express.json());
 app.post("/slack-andybot-event", (req, res) => {
-  const obj = req.body;
-  //console.log(obj);
-  const str = obj.challenge || "nope..";
-  res.send(str);
-  //json would work aswell: https://api.slack.com/events/url_verification
-  //res.json();
+  //followin this tutorial: https://api.slack.com/bot-users
+  const payload = req.body;
+  res.sendStatus(200);
+
+  if (payload.event.type === "app_mention") {
+    const text = payload.event.text;
+    //make a post request to slack here with what
+    //see: https://api.slack.com/methods/chat.postMessage
+  }
 });
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
