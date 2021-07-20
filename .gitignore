@@ -4,3 +4,5 @@ npm-debug.log
 *.env
 *.dev
 .DS_Store
+
+debug.js
