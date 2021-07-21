@@ -6,10 +6,10 @@ require("dotenv").config();
 const PORT = process.env.PORT || 5000;
 const BOT_TOKEN = process.env.BOT_TOKEN;
 
-async function postMessage(msg) {
+async function postMessage(channel, text) {
   const body = {
-    channel: "webassemblytext",
-    text: msg,
+    channel,
+    text,
   };
 
   const res = await fetch("https://slack.com/api/chat.postMessage", {
@@ -43,10 +43,12 @@ app.post("/slack-andybot-event", (req, res) => {
   const payload = req.body;
   res.sendStatus(200);
 
-  if (payload.event.type === "app_mention") {
-    //const text = payload.event.text;
+  const e = payload.event;
+  if (e.type === "app_mention") {
+    //const text = e.text;
     postMessage(
-      "Im alive. Inspect my mind here: https://github.com/Andersgee/slack-andybot"
+      e.channel,
+      "Im still alive. Inspect my mind here: https://github.com/Andersgee/slack-andybot"
     );
     //make a post request to slack here with what
     //see: https://api.slack.com/methods/chat.postMessage
