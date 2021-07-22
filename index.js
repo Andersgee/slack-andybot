@@ -20,8 +20,7 @@ async function postMessage(channel, text) {
     },
     body: JSON.stringify(body),
   });
-  const resdata = await res.json();
-  return resdata;
+  return res.json();
 }
 
 async function fetchJoke() {
@@ -35,7 +34,7 @@ async function postJoke(channel) {
   const joke = await fetchJoke();
   const r = await postMessage(channel, joke.setup);
   setTimeout(() => {
-    postMessage(e.channel, joke.punchline);
+    postMessage(channel, joke.punchline);
   }, 3000);
 }
 
@@ -67,10 +66,7 @@ app.post("/slack-andybot-event", (req, res) => {
     if (e.text.includes("joke")) {
       postJoke(e.channel);
     } else {
-      postMessage(
-        e.channel,
-        "Im still alive. Inspect my mind here: https://github.com/Andersgee/slack-andybot"
-      );
+      postMessage(e.channel, "Im alive...");
     }
   }
 });
