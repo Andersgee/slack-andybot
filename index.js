@@ -63,8 +63,15 @@ app.post("/slack-andybot-event", (req, res) => {
 
   const e = payload.event;
   if (e.type === "app_mention") {
-    if (e.text.includes("joke")) {
+    const t = e.text.toLowerCase();
+    if (t.includes("joke")) {
       postJoke(e.channel);
+    } else if (
+      t.includes("life") &&
+      t.includes("universe") &&
+      t.includes("everything")
+    ) {
+      postMessage(e.channel, "42");
     } else {
       postMessage(e.channel, "Im alive...");
     }
