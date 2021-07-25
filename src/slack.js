@@ -1,5 +1,10 @@
 import { postMessage, postJoke } from "./messaging.js";
 
+//https://api.slack.com/bot-users
+//https://api.slack.com/methods/chat.postMessage
+//https://api.slack.com/apis/connections/events-api#event_type_structure
+//https://api.slack.com/types/event
+
 export function handleEvent(req, res) {
   const payload = req.body;
   res.sendStatus(200);
