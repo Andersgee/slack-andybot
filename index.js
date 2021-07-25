@@ -1,4 +1,4 @@
-import _ from "./src/env.js";
+import "dotenv/config";
 import express from "express";
 import { handleEvent } from "./src/slack.js";
 
