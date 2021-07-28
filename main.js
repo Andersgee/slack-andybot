@@ -12,9 +12,10 @@ function handleWebassemblytextAction(req, res) {
 
   const channel = "webassemblytext";
   if (payload.supersafepassword === "abcda") {
+    const msg = payload.commitmessage || "n/a";
     postMessage(
       channel,
-      "Info: Andersgee/WebAssemblyText.jl was just updated."
+      `Info: Andersgee/WebAssemblyText.jl was just updated, with last commit message: ${msg}`
     );
   }
 }
