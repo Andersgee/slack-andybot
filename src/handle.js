@@ -25,3 +25,17 @@ export function handleEvent(req, res) {
     }
   }
 }
+
+export function handleWebassemblytextAction(req, res) {
+  const payload = req.body;
+  res.sendStatus(200);
+
+  const channel = "webassemblytext";
+  if (payload.supersafepassword === "abcda") {
+    const msg = payload.commitmessage || "n/a";
+    postMessage(
+      channel,
+      `Info: Andersgee/WebAssemblyText.jl was just updated, with last commit message: ${msg}`
+    );
+  }
+}
