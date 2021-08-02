@@ -44,3 +44,17 @@ export function handleWebassemblytextAction(req, res) {
     );
   }
 }
+
+export function handleSlackAndyBotAction(req, res) {
+  const payload = req.body;
+  res.sendStatus(200);
+
+  const channel = "webassemblytext";
+  if (payload.supersafepassword === "abcda") {
+    const msg = payload.commitmessage || "n/a";
+    postMessage(
+      channel,
+      `Info: Andersgee/slack-andybot was just updated, with last commit message: ${msg}`
+    );
+  }
+}

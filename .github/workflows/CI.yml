@@ -1,0 +1,14 @@
+name: CI
+on:
+  - push
+  - pull_request
+jobs:
+  slacknotify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Slack
+        uses: fjogeleit/http-request-action@master
+        with:
+          url: "https://slack-andybot.herokuapp.com/slackandybot-action"
+          method: "POST"
+          data: '{"supersafepassword":"abcda","commitmessage":"${{ github.event.head_commit.message }}"}'
