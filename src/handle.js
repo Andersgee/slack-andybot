@@ -20,6 +20,11 @@ export function handleEvent(req, res) {
       t.includes("everything")
     ) {
       postMessage(e.channel, "42");
+    } else if (t.includes("source") || t.includes("brain")) {
+      postMessage(
+        e.channel,
+        "My brain lives here: https://github.com/Andersgee/slack-andybot"
+      );
     } else {
       postMessage(e.channel, "Im alive...");
     }
