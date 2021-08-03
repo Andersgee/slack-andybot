@@ -42,6 +42,7 @@ async function getWikiSearch(str) {
   //res[3] is a list of urls
   return res[1];
 }
+
 async function getWikiArticle(str) {
   const article = await fetch(
     `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=${str}&exsentences=3&explaintext=1&exintro=1`
@@ -52,9 +53,14 @@ async function getWikiArticle(str) {
 async function getWikiExtract(str) {
   const titles = await getWikiSearch(str);
   const article = await getWikiArticle(titles[0]); //title[0] is first item in searchbox.
-  const pages = Object.values(article.query.pages);
-  const extract = pages[0].extract;
-  return extract;
+  const article1 = await getWikiArticle(titles[1]);
+  const extract = Object.values(article.query.pages)[0].extract;
+  const extract1 = Object.values(article1.query.pages)[0].extract;
+  if (extract.includes("may refer to:")) {
+    return `andybot INFO: Im gonna assume you mean ${titles[1]}.\n\n${extract1}`;
+  } else {
+    return extract;
+  }
 }
 
 export async function postWikiExtract(channel, str) {
