@@ -56,7 +56,7 @@ async function getWikiExtract(str) {
   const article1 = await getWikiArticle(titles[1]);
   const extract = Object.values(article.query.pages)[0].extract;
   const extract1 = Object.values(article1.query.pages)[0].extract;
-  if (extract.includes("may refer to:")) {
+  if (extract.includes("may refer to")) {
     return `andybot INFO: Im gonna assume you mean ${titles[1]}.\n\n${extract1}`;
   } else {
     return extract;
