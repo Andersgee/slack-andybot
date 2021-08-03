@@ -1,4 +1,4 @@
-import { postMessage, postJoke } from "./messaging.js";
+import { postMessage, postJoke, postWikiExtract } from "./messaging.js";
 
 //https://api.slack.com/bot-users
 //https://api.slack.com/methods/chat.postMessage
@@ -25,6 +25,10 @@ export function handleEvent(req, res) {
         e.channel,
         "My brain lives here: https://github.com/Andersgee/slack-andybot"
       );
+    } else if (t.includes("wiki")) {
+      const v = t.split(" ");
+      const searchwords = v.slice(1).join(" ");
+      postWikiExtract(e.channel, searchwords);
     } else {
       postMessage(e.channel, "Im alive...");
     }
