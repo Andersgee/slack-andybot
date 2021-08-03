@@ -27,8 +27,9 @@ export function handleEvent(req, res) {
       );
     } else if (t.includes("wiki")) {
       const v = t.split(" ");
-      const searchwords = v.slice(1).join(" ");
-      postMessage(e.channel, `searchwords: ${searchwords}`);
+      postMessage(e.channel, `t: ${t}`);
+      //const searchwords = v.slice(1).join(" ");
+      //postMessage(e.channel, `searchwords: ${searchwords}`);
       //postWikiExtract(e.channel, searchwords);
     } else {
       postMessage(e.channel, "Im alive...");
