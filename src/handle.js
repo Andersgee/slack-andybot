@@ -28,7 +28,8 @@ export function handleEvent(req, res) {
     } else if (t.includes("wiki")) {
       const v = t.split(" ");
       const searchwords = v.slice(1).join(" ");
-      postWikiExtract(e.channel, searchwords);
+      postMessage(e.channel, `searchwords: ${searchwords}`);
+      //postWikiExtract(e.channel, searchwords);
     } else {
       postMessage(e.channel, "Im alive...");
     }
