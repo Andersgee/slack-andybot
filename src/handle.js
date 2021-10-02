@@ -12,7 +12,11 @@ export function handleEvent(req, res) {
   const e = payload.event;
   if (e.type === "app_mention") {
     const t = e.text.toLowerCase();
-    if (t.includes("joke")) {
+    if (t.includes("wiki")) {
+      const v = t.split(" ");
+      const searchwords = v.slice(2).join(" ");
+      postWikiExtract(e.channel, searchwords);
+    } else if (t.includes("joke")) {
       postJoke(e.channel);
     } else if (
       t.includes("life") &&
@@ -25,12 +29,8 @@ export function handleEvent(req, res) {
         e.channel,
         "My brain lives here: https://github.com/Andersgee/slack-andybot"
       );
-    } else if (t.includes("wiki")) {
-      const v = t.split(" ");
-      const searchwords = v.slice(2).join(" ");
-      postWikiExtract(e.channel, searchwords);
     } else {
-      postMessage(e.channel, "Im alive...");
+      postCommands(e.channel);
     }
   }
 }

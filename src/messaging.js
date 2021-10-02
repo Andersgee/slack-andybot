@@ -71,3 +71,15 @@ export async function postWikiExtract(channel, str) {
   const extract = await getWikiExtract(str);
   postMessage(channel, extract);
 }
+
+export async function postCommands(channel) {
+  const commands = `reponds to mentions (@andybot) available commands:
+  wiki *
+  joke
+  life && universe && everything
+  42
+  source || brain
+  `;
+
+  postMessage(channel, commands);
+}
