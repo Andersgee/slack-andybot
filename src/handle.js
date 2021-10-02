@@ -1,4 +1,9 @@
-import { postMessage, postJoke, postWikiExtract } from "./messaging.js";
+import {
+  postMessage,
+  postJoke,
+  postWikiExtract,
+  postCommands,
+} from "./messaging.js";
 
 //https://api.slack.com/bot-users
 //https://api.slack.com/methods/chat.postMessage
