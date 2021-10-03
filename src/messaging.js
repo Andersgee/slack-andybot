@@ -2,6 +2,83 @@ import fetch from "node-fetch";
 
 const BOT_TOKEN = process.env.BOT_TOKEN;
 
+export async function postBlocks(channel) {
+  const blocks = {
+    type: "actions",
+    block_id: "actions1",
+    elements: [
+      {
+        type: "static_select",
+        placeholder: {
+          type: "plain_text",
+          text: "Which witch is the witchiest witch?",
+        },
+        action_id: "select_2",
+        options: [
+          {
+            text: {
+              type: "plain_text",
+              text: "Matilda",
+            },
+            value: "matilda",
+          },
+          {
+            text: {
+              type: "plain_text",
+              text: "Glinda",
+            },
+            value: "glinda",
+          },
+          {
+            text: {
+              type: "plain_text",
+              text: "Granny Weatherwax",
+            },
+            value: "grannyWeatherwax",
+          },
+          {
+            text: {
+              type: "plain_text",
+              text: "Hermione",
+            },
+            value: "hermione",
+          },
+        ],
+      },
+      {
+        type: "button",
+        text: {
+          type: "plain_text",
+          text: "Cancel",
+        },
+        value: "cancel",
+        action_id: "button_1",
+      },
+    ],
+  };
+  const body = {
+    channel,
+    blocks,
+  };
+
+  const res = await fetch("https://slack.com/api/chat.postMessage", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json; charset=utf8",
+      Authorization: `Bearer ${BOT_TOKEN}`,
+    },
+    body: JSON.stringify(body),
+  });
+  return res.json();
+}
+
+async function fetchJoke() {
+  const jokes = await fetch(
+    "https://official-joke-api.appspot.com/jokes/programming/random"
+  ).then((res) => res.json());
+  return jokes[0];
+}
+
 export async function postMessage(channel, text) {
   const body = {
     channel,

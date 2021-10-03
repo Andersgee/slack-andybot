@@ -3,6 +3,7 @@ import {
   postJoke,
   postWikiExtract,
   postCommands,
+  postBlocks,
 } from "./messaging.js";
 
 //https://api.slack.com/bot-users
@@ -28,6 +29,9 @@ export function handleEvent(req, res) {
         const msg =
           "source code for andybot: https://github.com/Andersgee/slack-andybot";
         postMessage(e.channel, msg);
+        break;
+      case "blocks":
+        postBlocks(e.channel);
         break;
       default:
         if (t.includes("joke")) {
