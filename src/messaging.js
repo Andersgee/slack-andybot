@@ -2,6 +2,23 @@ import fetch from "node-fetch";
 
 const BOT_TOKEN = process.env.BOT_TOKEN;
 
+export async function postMarkdownMessage(channel, text) {
+  const body = {
+    channel,
+    text: { text, type: "mrkdwn" },
+  };
+
+  const res = await fetch("https://slack.com/api/chat.postMessage", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json; charset=utf8",
+      Authorization: `Bearer ${BOT_TOKEN}`,
+    },
+    body: JSON.stringify(body),
+  });
+  return res.json();
+}
+/*
 export async function postBlocks(channel) {
   const blocks = {
     type: "actions",
@@ -71,7 +88,7 @@ export async function postBlocks(channel) {
   });
   return res.json();
 }
-
+*/
 async function fetchJoke() {
   const jokes = await fetch(
     "https://official-joke-api.appspot.com/jokes/programming/random"
@@ -158,5 +175,5 @@ export async function postCommands(channel) {
     @andybot something else          This message
   `;
 
-  postMessage(channel, commands);
+  postMarkdownMessage(channel, commands);
 }
