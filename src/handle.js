@@ -17,25 +17,30 @@ export function handleEvent(req, res) {
   const e = payload.event;
   if (e.type === "app_mention") {
     const t = e.text.toLowerCase();
-    if (t.includes("wiki")) {
-      const v = t.split(" ");
-      const searchwords = v.slice(2).join(" ");
-      postWikiExtract(e.channel, searchwords);
-    } else if (t.includes("joke")) {
-      postJoke(e.channel);
-    } else if (
-      t.includes("life") &&
-      t.includes("universe") &&
-      t.includes("everything")
-    ) {
-      postMessage(e.channel, "42");
-    } else if (t.includes("source") || t.includes("brain")) {
-      postMessage(
-        e.channel,
-        "My brain lives here: https://github.com/Andersgee/slack-andybot"
-      );
-    } else {
-      postCommands(e.channel);
+    const v = t.split(" ");
+    const command = v.slice(0, 1);
+    switch (command) {
+      case "wiki":
+        const searchwords = v.slice(2).join(" ");
+        postWikiExtract(e.channel, searchwords);
+        break;
+      case "source":
+        const msg =
+          "source code for andybot: https://github.com/Andersgee/slack-andybot";
+        postMessage(e.channel, msg);
+        break;
+      default:
+        if (t.includes("joke")) {
+          postJoke(e.channel);
+        } else if (
+          t.includes("life") &&
+          t.includes("universe") &&
+          t.includes("everything")
+        ) {
+          postMessage(e.channel, "42");
+        } else {
+          postCommands(e.channel);
+        }
     }
   }
 }
