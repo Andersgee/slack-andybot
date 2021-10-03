@@ -18,7 +18,7 @@ export function handleEvent(req, res) {
   if (e.type === "app_mention") {
     const t = e.text.toLowerCase();
     const v = t.split(" ");
-    const command = v.slice(0, 1);
+    const command = v.slice(1, 2)[0] || "";
     switch (command) {
       case "wiki":
         const searchwords = v.slice(2).join(" ");
